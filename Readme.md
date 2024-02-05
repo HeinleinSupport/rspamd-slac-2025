@@ -2,12 +2,12 @@
 
 # Sichere Mailcluster mit Rspamd, Spamhaus DQS und PeekabooAV
 
-__Workshop auf der SLAC 2023__
+__Workshop auf der SLAC 2024__
 
 [[_TOC_]]
 
 *****
-## Repo Status 25.5.2023
+## Repo Status 05.02.2024
 
 + initiale Slides
 + derzeitige Rspamd Worker Config vom Ende des Workshops
