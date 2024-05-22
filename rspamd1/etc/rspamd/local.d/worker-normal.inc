@@ -1,2 +1,0 @@
-
-bind_socket = '*';

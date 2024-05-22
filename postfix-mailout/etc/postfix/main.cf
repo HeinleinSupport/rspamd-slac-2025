@@ -1,0 +1,79 @@
+# Heinlein Support SLAC 2024 - Workshop - Sichere Mailcluster mit Rspamd und Spamhaus DQS
+# https://github.com/HeinleinSupport/rspamd-slac-2024
+#
+
+# uncomment to handle every 5xx error as 4xx error (for debugging)
+#soft_bounce = yes
+
+# static settings
+biff = no
+
+# Postfix version and distribution based settings
+compatibility_level = 2
+smtputf8_enable = no
+
+# TLS Server ( SMTPD ) parameters
+smtpd_tls_chain_files = 
+   /etc/certs/default_key.key
+   /etc/certs/default_cert.crt
+
+smtpd_tls_dh1024_param_file = /etc/certs/dhparam.pem
+smtpd_tls_security_level = encrypt
+smtpd_tls_received_header = yes
+smtpd_tls_loglevel = 1
+
+# TLS Client ( SMTP ) parameters
+smtp_tls_security_level = encrypt
+smtp_tls_note_starttls_offer = yes
+smtp_tls_loglevel = 1
+smtp_tls_CApath = /etc/ssl/certs
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+
+# TLS Cipher Settings
+smtpd_tls_protocols = >=TLSv1.2
+smtpd_tls_mandatory_protocols = >=TLSv1.2
+smtp_tls_protocols = >=TLSv1.2
+smtp_tls_mandatory_protocols = >=TLSv1.2
+tls_preempt_cipherlist = no
+tls_ssl_options = NO_COMPRESSION
+
+# Generic Settings
+default_database_type = texthash
+delay_warning_time = 4h
+bounce_queue_lifetime = 1d
+maximal_queue_lifetime = 3d
+recipient_delimiter = +
+disable_vrfy_command = yes
+enable_long_queue_ids = yes
+show_user_unknown_table_name = no
+smtpd_helo_required = yes
+strict_rfc821_envelopes = yes
+relayhost = 
+mynetworks = 127.0.0.0/8 10.0.3.142 10.0.3.143
+message_size_limit = 52428800
+address_verify_sender = verify
+
+# Postfix Lookup Tables / Maps / Databases
+alias_maps = hash:/etc/aliases
+transport_maps = texthash:/etc/postfix/maps.d/transport.list
+smtp_tls_policy_maps = texthash:/etc/postfix/maps.d/tls_policy.list
+
+# Postfix Restrictions
+smtpd_recipient_restrictions = 
+# Postmaster whitelisten!
+  check_recipient_access inline:{
+    {postmaster@=permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination,permit}
+    {abuse@=permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination,permit}
+    },
+# Empfaenger whitelisten?
+  check_recipient_access texthash:/etc/postfix/maps.d/access_recipient.list,
+# Hosts und Absender blacklisten?
+  check_client_access cidr:/etc/postfix/maps.d/access_client.cidr,
+  check_sender_access texthash:/etc/postfix/maps.d/access_sender.list,
+# Unsere Kinderchens erlauben!
+  permit_mynetworks,
+# Was jetzt noch ist darf durch!
+  permit
+
+
+

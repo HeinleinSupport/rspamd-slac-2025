@@ -1,0 +1,83 @@
+# Heinlein Support SLAC 2024 - Workshop - Sichere Mailcluster mit Rspamd und Spamhaus DQS
+# https://github.com/HeinleinSupport/rspamd-slac-2024
+#
+
+
+# muss noch angelegt werden
+modules {
+  path = "/var/lib/rspamd/modules";
+  fallback_path = "/var/lib/rspamd/modules"; # Legacy path
+}
+# leere Datei
+lua = "/var/lib/rspamd/modules/nil.lua";
+
+antivirus { enabled=false; }
+arc { enabled=false; }
+asn { enabled=false; }
+aws_s3 { enabled=false; }
+bimi { enabled=false; }
+chartable { enabled=false; }
+classifier { enabled=false; }
+clickhouse { enabled=false; }
+dcc { enabled=false; }
+dkim { enabled=false; }
+dkim_signing { enabled=false; }
+dmarc { enabled=false; }
+elastic { enabled=false; }
+emails { enabled=false; }
+external_relay { enabled=false; }
+external_services { enabled=false; }
+force_actions { enabled=false; }
+forged_recipients { enabled=false; }
+fuzzy_check { enabled=false; }
+greylist { enabled=false; }
+hfilter { enabled=false; }
+history_redis { enabled=false; }
+http_headers { enabled=false; }
+known_senders { enabled=false; }
+maillist { enabled=false; }
+metadata_exporter { enabled=false; }
+metric_exporter { enabled=false; }
+mid { enabled=false; }
+milter_headers { enabled=false; }
+mime_types { enabled=false; }
+multimap { enabled=false; }
+mx_check { enabled=false; }
+neural { enabled=false; }
+once_received { enabled=false; }
+p0f { enabled=false; }
+phishing { enabled=false; }
+ratelimit { enabled=false; }
+rbl { enabled=false; }
+regexp { enabled=false; }
+replies { enabled=false; }
+reputation { enabled=false; }
+rspamd_update { enabled=false; }
+spamassassin { enabled=false; }
+spamtrap { enabled=false; }
+spf { enabled=false; }
+surbl { enabled=false; }
+url_redirector { enabled=false; }
+whitelist { enabled=false; }
+
+composites {}
+regexp {}
+
+group "headers" {}
+group "subject" {}
+group "mua" {}
+group "rbl" {}
+group "statistics" {}
+group "fuzzy" {}
+group "policies" {}
+group "whitelist" {}
+group "surbl" {}
+group "phishing" {}
+group "hfilter" {}
+group "mime_types" {}
+group "excessqp" {}
+group "excessb64" {}
+group "neural" {}
+group "antivirus" {}
+group "external_services" {}
+group "content" {}

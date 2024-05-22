@@ -1,0 +1,9 @@
+# This file has to be updated from time to time using this template:
+# https://docs.spamhaus.com/download/URL_normalization.yaml
+
+is.gd
+storage.googleapis.com
+commondatastorage.googleapis.com
+hashbltest.surbl.org
+short.hbltest.com
+cld.pt
