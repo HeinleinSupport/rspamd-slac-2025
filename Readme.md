@@ -60,11 +60,11 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 
 ## Links zu den Configs
 
-+ Postfix MX: 
-+ Postfix Hub:
-+ Postfix Mailout:
-+ Rspamd Proxy:
-+ Rspamd Worker: 
++ Postfix MX: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix)
++ Postfix Hub: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix)
++ Postfix Mailout: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix)
++ Rspamd Proxy: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd)
++ Rspamd Worker: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d)
 
 *****
 
