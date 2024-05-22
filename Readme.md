@@ -8,9 +8,10 @@
 
 __Workshop auf der SLAC 2024__
 
-Carsten Rosenberg <c.rosenberg@heinlein-support.de>
-Manu Zurmühl <m.zurmuehl@heinlein-support.de>
+- Carsten Rosenberg <c.rosenberg@heinlein-support.de>
+- Manu Zurmühl <m.zurmuehl@heinlein-support.de>
 
+<br><br>
 _Enterprise grade mail-cluster with open-source? YES ;)_
 
 [https://www.heinlein-support.de/blog/enterprise-mail-security-open-source](https://www.heinlein-support.de/blog/enterprise-mail-security-open-source)
