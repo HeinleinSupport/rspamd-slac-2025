@@ -28,6 +28,21 @@ smtp     inet  n       -       n       -       -       smtpd
   -o milter_content_timeout=22
 
 
+### Submission port 587 config
+submission inet n       -       n       -       -       smtpd
+  -o syslog_name=postfix/submission
+  -o smtpd_tls_security_level=encrypt
+  -o smtpd_tls_auth_only=yes
+  -o smtpd_sasl_auth_enable=yes
+  -o content_filter=smtp-cf-rspamd:[127.0.0.1]:10026
+  ### milter options
+  -o smtpd_milters=inet:127.0.0.1:11332
+  -o milter_macro_daemon_name=outgoing_prequeue
+  -o milter_default_action=accept
+  -o milter_connect_timeout=3
+  -o milter_command_timeout=3
+  -o milter_content_timeout=5
+
 ### 2nd stage scan with rspamd
 127.0.0.1:10026 inet n   -       n       -       -      smtpd
   -o syslog_name=postfix/10026
