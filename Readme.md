@@ -34,7 +34,7 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
   - [Mailout Config](#mailout-config)
   - [Quick Walkthrough Rspamd Proxy Config](#quick-walkthrough-rspamd-proxy-config)
   - [Rspamd - Symbole, Module, Plugins, Funktionen](#rspamd---symbole-module-plugins-funktionen)
-  - [Rspamd Composites](#rspamd-composites)
+  - [Rspamd - Composites](#rspamd---composites)
   - [Rspamd - Actions](#rspamd---actions)
   - [Rspamd - Force Actions](#rspamd---force-actions)
   - [Warum Aktionen direkt in den Plugins (oft) nicht sinnvoll sind](#warum-aktionen-direkt-in-den-plugins-oft-nicht-sinnvoll-sind)
@@ -192,7 +192,7 @@ smtpd_recipient_restrictions =
 
 ```conf
 # exclude @mailexample.com from the TLS enforcement
-/.*@mailexample.de/i DUNNO
+/.*@mailexample.de$/i DUNNO
 
 /.*/  reject_plaintext_session
 ```
@@ -332,7 +332,7 @@ upstream "scan" {
 
 *****
 
-## Rspamd Composites
+## Rspamd - Composites
 
 - wirken wie die Meta Rules in Spamassassin und können noch einiges mehr
 - Matching erfolgt als logische Verknüfung auf aktivierte Symbole oder Gruppen
@@ -506,7 +506,7 @@ clamav {
 }
 ```
 
-- Dieses neue Symbol ließe sich jetzt direkt verwenden, aber das ist nicht managebar
+- Dieses neue Symbol ließe sich jetzt direkt verwenden, aber das ist in der Masse nicht managebar
 - Also nutzen wir Gruppen
 
 /etc/rspamd/local.d/antivirus_group.conf
@@ -523,7 +523,7 @@ symbols = {
 ```
 
 - Die Gruppe `av_virus_reject` läßt sich nun für den Reject nutzen
-- Ein Score von 8 zeigt außerdem, dass wir diese Signatur in Spam Mails sehen
+- Ein Score von 8 zeigt außerdem, dass wir diese Signatur eigentlich nur in Spam Mails sehen
 - Matchen der Gruppe in Composites
 
 /etc/rspamd/local.d/composites.conf
@@ -725,6 +725,7 @@ ENCRYPTED_MIME_PART_CT {
   # /application\/pgp-keys;.*/i
 
   type = "selector";
+    # Achtung 'attachments_ct' ist ein custom selector
   selector = "attachments_ct.uniq";
   map = "file://$LOCAL_CONFDIR/local.d/maps.d/encrypted_mime_part_ct.map";
   symbol = "ENCRYPTED_MIME_PART_CT";
@@ -740,6 +741,7 @@ ENCRYPTED_MIME_PART_CT {
 
 - Ratelimit funktioniert nach dem Leaky Bucket Verfahren
 - Es wird also nicht 1:1 gezählt sondern auch mit einem Vorratsbehälter (Burst) gearbeitet
+  - Alternativ für ganz genaues zählen haben wir ein eigenes generisches Modul gebaut (ratecounting)
 - Das macht es manchmal schwieriger nachzuvollziehen wann ein Ratelimit erreicht ist
 - Auch hier die übliche Vorgehensweise:
   - Wir bauen uns beliebige Limits aber ohne Aktion nur als Indikator
@@ -828,6 +830,7 @@ rules {
 ```
 
 [https://rspamd.com/doc/modules/reputation.html](https://rspamd.com/doc/modules/reputation.html)
+
 *****
 
 ## Spamhaus DQS
@@ -843,6 +846,10 @@ rules {
   - Wir finden die Umsetzung nicht so schön gelöst und haben das etwas umgebaut ;)
   - Hier wieder: Umsetzung der komplexeren Anteile als Selector!
   - Die benötigten Selectors und Config findet ihr bei der Rspamd Config
+
+[rbl.conf](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/rbl.conf)
+[rbl_group.conf](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/rbl_group.conf)
+[spamhaus_dqs.lua](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/lua.d/spamhaus_dqs.lua)
 
 *****
 
