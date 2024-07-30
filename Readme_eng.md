@@ -4,6 +4,8 @@
 
 <img src="./images/Heinlein_Logo.webp" alt="Heinlein Support GmbH" width="60%"/>
 
+- Unser Workshop in deutsch: [https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme.md)
+
 # Secure mail clusters with Rspamd and Spamhaus DQS
 
 __Workshop at the SLAC 2024__
