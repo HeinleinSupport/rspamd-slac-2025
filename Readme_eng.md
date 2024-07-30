@@ -78,9 +78,9 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 
 - In a Postfix infrastructure, we like to separate the systems with Internet communication and internal connections
 - Ideally, external systems should not have access to internal systems (or only to the internal Postfix)
-- internal mails do not run via systems connected to the Internet
+- internal mails should not pass via systems connected to the Internet
 - MX server (incoming) and mailout (outgoing) are therefore in a DMZ
-- HUB (internal mail distributor) is located in the internal network and also communicates with MX and Mailout
+- HUB (internal mail distributor) is located in the internal network and communicates with MX and Mailout
 
 *****
 
@@ -110,7 +110,7 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 
 ## Encapsulation of individual services in their own systems or containers/CGroups
 
-- Redis reacts sensitively when the working memory in the system runs out
+- Redis is not happy if the working memory in the system runs out
 - File analysis tools such as anti-virus systems or VBA/PDF analyses can crash during analysis
 - That's why we like to lock these tools in extra systems, containers or with other mechanisms
 
@@ -129,7 +129,7 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 - To avoid single points of failure, we install the Rspamd proxy directly on the Postfix system
 - The proxy receives a list of Rspamd backends that are addressed in a load-balanced manner
 - Advantage: Redundancy and reliability
-- Each Postfix passes a keyword for its task in the cluster via `milter_macro_daemon_name
+- Each Postfix passes a keyword for its task in the cluster via `milter_macro_daemon_name`
   - e.g. _incoming_
 
 *****
@@ -340,17 +340,17 @@ upstream "scan" {
 ## Rspamd - Composites
 
 - work like the Meta Rules in Spamassassin and can do a lot more
-- Matching takes place as a logical link to activated symbols or groups
+- Matching takes place as a logical expression to activate symbols or groups
   - `expression = "INCOMING & BAD_SUBJECT";`
-- If a logical link is `true`, a new symbol and  
-  - add new symbol and points
-  - Remove matched symbols or their score
+- If a logical expression is `true`
+  - new symbol and points can be added
+  - matched symbols or their score can be removed
 
 *****
 
 ## Rspamd - Actions
 
-- Rspamd knows various actions that are triggered when the sum of all symbols is exceeded
+- Rspamd knows various actions that are triggered when the sum of all symbols exceeds a threshold
   - no action
   - greylist (soft reject)
   - add header (this is not directly about headers)
@@ -364,7 +364,7 @@ upstream "scan" {
 
 ## Rspamd - Force Actions
 
-- in the force actions, logical links (expressions) of symbols can also be used to force actions independent of threshold values
+- in the force actions, logical expressions of symbols can also be used to trigger actions independent of threshold values
   - `expression = "CLAMAV_VIRUS & !WHITELIST_ANTIVIRUS";`
 - all actions defined in actions can be used
   - Attention: a `reject = null;` switches off the reject action completely
@@ -395,23 +395,23 @@ upstream "scan" {
 - We recommend letting Rspamd collect many indicators and evaluating them at the end of the scan
   - A virus mail may also be recognized as spam and then also learned
 - Composites and force actions are used intensively for this purpose
-- Exceptions can be easily implemented
-- Incoming, outgoing and internal traffic can be easily differentiated
+- Exceptions can be implemented easily
+- Incoming, outgoing and internal traffic can be differentiated easily
 - Viruses can be categorized e.g. as spam (for learning) and malware (simply reject)
 - Rate limit rules can be evaluated individually
   - Rejection for certain rules
   - Info to the admin for other limits
-- as long as they are not very complex multimaps, we do not use the _Conditional Maps_ or _Combined maps_ options
+- we use the _Conditional Maps_ or _Combined maps_ options only, if the multimaps are very complex 
 
 *****
 
 ## Scoring and policies for spamd
 
-- we often see that unwanted attachments or senders with a high score are rejected
+- we often see that unwanted attachments or senders are given a high score in order to be rejected
 - However, high scores always trigger the learning mechanisms of Rspamd
   - Bayes, Fuzzy, Reputation, Neural Network, (rate limit)
-- You certainly don't want that in the mail with .exe from your colleagues.
-- will be funny at the latest when your signature is recognized as spam ;)
+- You certainly don't want to learn the mail with the `.exe` from your colleagues.
+- this would backfire once your signature is recognized as spam ;)
 - Rejection for policy reasons: Force actions and at most a low score
 - Rejection as SPAM: high score (but please with many indicators)
 - Groups can be limited in their maximum score as a safeguard
@@ -420,17 +420,17 @@ upstream "scan" {
 
 Example multimaps:
 
-- SENDER_DOMAIN_BLOCKLIST -> reject via force_actions
-- SENDER_DOMAIN_SPAM -> 8.0 points
+- `SENDER_DOMAIN_BLOCKLIST` -> reject via force_actions
+- `SENDER_DOMAIN_SPAM` -> 8.0 points
 
 *****
 
 ## Rspamd Settings
 
 - With the settings plugin in Rspamd you can create a scan profile that has different threshold values, deactivates or explicitly activates certain functions
-- Or simply add another symbol as an indicator for composites or force actions
+- Or it can simply add another symbol as an indicator for composites or force actions
 - the settings profiles can be stored statically in a file, retrieved from a web server, stored in Redis or retrieved from an HTTP API
-- Settings profiles have a matching and a priority as well as a section for customization and for additional symbols
+- Settings profiles have a matching functionality and a priority as well as a section for customization and additional symbols
 - We define default symbols according to their location in the infrastructure
   - _incoming_
   - _outgoing_
@@ -563,7 +563,7 @@ rules {
 
 ### Example multimap + settings
 
-- Rejection of certain attachments for incoming mails and if the recipient is not on the welcome list
+- Rejection of certain attachments for incoming mails and if the recipient is not on the exclude list
 - Indicator: `BANNED_EXTENSIONS(0.00){exe;}`
 
 /etc/rspamd/local.d/multimap.conf
@@ -720,7 +720,7 @@ SENDER_DOMAIN_SPAMLIST {
 ```
 
 - Matching the mime content type to S/Mime / PGP content with custom selector
-- Is then used, for example, to re-route the mail
+- can be used to re-route the mail
 
 ```conf
 ENCRYPTED_MIME_PART_CT {
@@ -744,7 +744,7 @@ ENCRYPTED_MIME_PART_CT {
 
 ## Ratelimit
 
-- Ratelimit works according to the leaky bucket method
+- Ratelimit works according to the token bucket method
 - So it is not counted 1:1 but also works with a storage container (burst)
   - Alternatively, for very precise counting, we have built our own generic module (ratecounting)
 - This sometimes makes it more difficult to understand when a rate limit has been reached
@@ -848,7 +848,7 @@ rules {
   - Subdomains with DBL
 - This must be configured separately in Rspamd
 - Spamhaus Configs for this - [https://github.com/spamhaus/rspamd-dqs](https://github.com/spamhaus/rspamd-dqs)
-  - We find the implementation not so nicely solved and have rebuilt it a bit ;)
+  - We found some room for improvement in the implementation and have rebuilt it a bit ;)
   - Here again: Implementation of the more complex parts as selectors!
   - You can find the required selectors and config at the Rspamd Config
 
@@ -861,7 +861,7 @@ rules {
 ## DKIM
 
 - With DKIM, we very often do not use domain-specific keys at all
-- Rspamd knows a fallback that goes back to a generic key
+- Rspamd knows a fallback method that falls back to a generic key
 - Rspamd can also check whether the correct public key for a domain is stored in the DNS before signing
   - Even with dozens of domains, it is possible to control whether or not to sign purely via the DNS
 - No real TXT entry needs to be made in the DNS.
@@ -927,7 +927,7 @@ allow_pubkey_mismatch = false;
 
 ## ARC - Authenticated Received Chain
 
-- the idea of repairing or weakening broken DMARC, DKIM, SPF for forwarding
+- the idea of repairing or weakening the impact of broken DMARC, DKIM, SPF for forwarding
 - and to be able to verify each MTA (hop) on the delivery path by means of a signature
 - each MTA refers to the entries of the previous MTAs
 - Instance number (i) indicates the order of the ARC headers
