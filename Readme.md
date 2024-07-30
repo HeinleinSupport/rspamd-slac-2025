@@ -61,11 +61,11 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 
 ## Links zu den Configs
 
-+ Postfix MX: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix)
-+ Postfix Hub: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix)
-+ Postfix Mailout: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix)
-+ Rspamd Proxy: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd)
-+ Rspamd Worker: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d)
+- Postfix MX: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix)
+- Postfix Hub: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix)
+- Postfix Mailout: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix)
+- Rspamd Proxy: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd)
+- Rspamd Worker: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d)
 
 *****
 
@@ -191,10 +191,10 @@ smtpd_recipient_restrictions =
 - /etc/postfix/maps.d/access_sender_tls_exclude.pcre
 
 ```conf
-# exclude @mailexample.com from the TLS enforcement
+# exclude @mailexample.de from the TLS enforcement
 /.*@mailexample.de$/i DUNNO
 
-/.*/  reject_plaintext_session
+/.*/ reject_plaintext_session
 ```
 
 *****
@@ -807,7 +807,7 @@ rules {
     symbol = "IP_REPUTATION";
   }
 
-  sender_replyto_reputation =  {
+  sender_replyto_reputation = {
     selector "generic" {
       selector = "header('Reply-To')";
     }
@@ -816,7 +816,7 @@ rules {
     symbol = "SENDER_REPLYTO_REPUTATION";
   }
 
-  bitcoin_reputation =  {
+  bitcoin_reputation = {
     selector "generic" {
       selector = "symbol('BITCOIN_ADDR'):options.first";
     }
@@ -905,7 +905,7 @@ use_domain = "header";
 # Whether to fallback to global config
 try_fallback = true;
 
-# Whether to normalise domains to eSLD
+# Whether to normalize domains to eSLD
 use_esld = false;
 
 # If `true` get pubkey from DNS record and check if it matches private key
