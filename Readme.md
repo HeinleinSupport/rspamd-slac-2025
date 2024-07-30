@@ -1,10 +1,11 @@
 <img src="./images/slac2024.png" alt="SLAC 2024 06.-08.05.2024 Berlin"/>
 
+- Our workshop in English: [https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md)
+
+
 *****
 
 <img src="./images/Heinlein_Logo.webp" alt="Heinlein Support GmbH" width="60%"/>
-
-- Our workshop in English:: [https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md)
 
 # Sichere Mailcluster mit Rspamd und Spamhaus DQS
 
