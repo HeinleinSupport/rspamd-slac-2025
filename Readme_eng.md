@@ -70,11 +70,11 @@ _Enterprise grade mail-cluster with open-source? YES ;)_
 
 ## Links to the configs
 
-- Postfix MX: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mx/etc/postfix)
-- Postfix Hub: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-hub/etc/postfix)
-- Postfix Mailout: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/postfix-mailout/etc/postfix)
-- Rspamd Proxy: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-proxy/etc/rspamd)
-- Rspamd Worker: [https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d](https://github.com/HeinleinSupport/rspamd-slac-2024/tree/main/rspamd-worker/etc/rspamd/local.d)
+- Postfix MX: [https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-mx/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-mx/etc/postfix)
+- Postfix Hub: [https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-hub/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-hub/etc/postfix)
+- Postfix Mailout: [https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-mailout/etc/postfix](https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/postfix-mailout/etc/postfix)
+- Rspamd Proxy: [https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/rspamd-proxy/etc/rspamd](https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/rspamd-proxy/etc/rspamd)
+- Rspamd Worker: [https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/rspamd-worker/etc/rspamd/local.d](https://github.com/HeinleinSupport/rspamd-slac-2025/tree/main/rspamd-worker/etc/rspamd/local.d)
 
 *****
 
@@ -856,9 +856,9 @@ rules {
   - Here again: Implementation of the more complex parts as selectors!
   - You can find the required selectors and config at the Rspamd Config
 
-[rbl.conf](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/rbl.conf)
-[rbl_group.conf](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/rbl_group.conf)
-[spamhaus_dqs.lua](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/rspamd-worker/etc/rspamd/local.d/lua.d/spamhaus_dqs.lua)
+[rbl.conf](https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/rspamd-worker/etc/rspamd/local.d/rbl.conf)
+[rbl_group.conf](https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/rspamd-worker/etc/rspamd/local.d/rbl_group.conf)
+[spamhaus_dqs.lua](https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/rspamd-worker/etc/rspamd/local.d/lua.d/spamhaus_dqs.lua)
 
 *****
 
