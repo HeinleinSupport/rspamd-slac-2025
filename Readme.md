@@ -1,7 +1,5 @@
 <img src="./images/slac2025.png" alt="SLAC 2025 02.-04.06.2025 Berlin"/>
 
-- Our workshop in English: [https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md)
-
 > [!NOTE]  
 > Dies entsteht die Fortsetzung des Rspamd Workshops aus dem Jahr 2024. Die Inhalte werden wir während und nach dem Workshop entsprechend erweitern. 
 

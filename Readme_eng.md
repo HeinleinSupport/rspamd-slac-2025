@@ -1,4 +1,4 @@
-<img src="./images/slac2024.png" alt="SLAC 2025 02.-04.06.2025 Berlin"/>
+<img src="./images/slac2025.png" alt="SLAC 2025 02.-04.06.2025 Berlin"/>
 
 
 > [!NOTE]  
