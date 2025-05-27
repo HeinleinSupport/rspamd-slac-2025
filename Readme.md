@@ -1,7 +1,12 @@
-<img src="./images/slac2024.png" alt="SLAC 2024 06.-08.05.2024 Berlin"/>
+<img src="./images/slac2025.png" alt="SLAC 2025 02.-04.06.2025 Berlin"/>
 
-- Our workshop in English: [https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md)
+- Our workshop in English: [https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2024/blob/main/Readme_eng.md)
 
+> [!NOTE]  
+> Dies entsteht die Fortsetzung des Rspamd Workshops aus dem Jahr 2024. Die Inhalte werden wir während und nach dem Workshop entsprechend erweitern. 
+
+> [!TIP]
+> Our workshop in English: [https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/Readme_eng.md](https://github.com/HeinleinSupport/rspamd-slac-2025/blob/main/Readme_eng.md)
 
 *****
 
@@ -9,7 +14,7 @@
 
 # Sichere Mailcluster mit Rspamd und Spamhaus DQS
 
-__Workshop auf der SLAC 2024__
+__Workshop auf der SLAC 2025__
 
 - Carsten Rosenberg <c.rosenberg@heinlein-support.de>
 - Manu Zurmühl <m.zurmuehl@heinlein-support.de>
